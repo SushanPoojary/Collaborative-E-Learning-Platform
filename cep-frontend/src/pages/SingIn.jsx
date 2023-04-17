@@ -15,9 +15,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {'Made with  💕 '}
-      <Link color="inherit" href="https://github.com/SushanPoojary/Collaborative-E-Learning-Platform">
+      <Link
+        color="inherit"
+        href="https://github.com/SushanPoojary/Collaborative-E-Learning-Platform"
+      >
         CMPE 295B CEP
       </Link>{' '}
       {new Date().getFullYear()}
@@ -29,7 +37,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-//   let navigate = useNavigate();
+  //   let navigate = useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,23 +47,26 @@ export default function SignIn() {
       password: data.get('password'),
     });
 
-    axios.post(`${backendURL}/signin`, {
-        'email': data.get('email'),
-        'password': data.get('password')
+    axios
+      .post(`${backendURL}/signin`, {
+        email: data.get('email'),
+        password: data.get('password'),
       })
       .then((response) => {
-        if(response.status === 200) {
-          console.log("User logedin successfully: ", response.data);
-        //   localStorage.setItem('email', response.data.email);
-        //   localStorage.setItem('username', response.data.username);
-        //   localStorage.setItem('type', response.data.type);
-        //   navigate('/home');
+        if (response.status === 200) {
+          console.log('User logedin successfully: ', response.data);
+          navigate('/session');
+
+          //   localStorage.setItem('email', response.data.email);
+          //   localStorage.setItem('username', response.data.username);
+          //   localStorage.setItem('type', response.data.type);
+          //   navigate('/home');
         }
       })
       .catch((error) => {
-        console.log("Error: ", error);
-        alert("Login Failed!");
-    })
+        console.log('Error: ', error);
+        alert('Login Failed!');
+      });
   };
 
   return (
@@ -75,7 +87,12 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
