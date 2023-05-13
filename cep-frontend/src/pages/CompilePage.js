@@ -58,7 +58,7 @@ return (
 			theme="vs-dark"
 			language="python"
 			defaultLanguage="python"
-			defaultValue="# Start Coding!"
+			defaultValue={localStorage.getItem('code')}
 			onChange={(value) => { setUserCode(value) }}
 		/>
 		<button className="run-btn" onClick={() => compile()}>

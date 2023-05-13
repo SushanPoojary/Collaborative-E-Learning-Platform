@@ -88,6 +88,7 @@ const EditorPage = () => {
     }
 
     function localCode() {
+        localStorage.setItem('code', codeRef.current);
         reactNavigator('/editor/run');
     }
 
